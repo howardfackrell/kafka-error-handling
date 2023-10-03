@@ -2,6 +2,7 @@ package hlf.kafkaerrorhandling;
 
 import hlf.kafkaerrorhandling.eventhandlers.IdCapturingWidgetEventHandler;
 import hlf.kafkaerrorhandling.eventhandlers.WidgetEventHandler;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,5 +31,9 @@ class KafkaErrorHandlingApplicationTests {
 				System.out.println(String.format("id %d was consumed %d times", k, v));
 			}
 		}
+
+		Assertions.assertThat(widgetEventHandler.getIds())
+				.hasSize(MessageProducer.MESSAGE_COUNT)
+				.as("All Messages should get consumed successfully");
 	}
 }

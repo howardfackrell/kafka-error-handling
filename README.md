@@ -17,6 +17,7 @@ Some of the options you might want to experiment with are:
 - @KafkaListener's errorHandler property vs the errorHandler configured in the KafkaListenerContainerFactory
 - Retry Backoff's
 - Recovery strategies
+- Error rate
 
 ## Where are those settings? 
 
@@ -39,3 +40,6 @@ and the KafkaListenerContainerFactory is set in the @KafkaListener annotation's 
 ### Backoff and recovery strategies
 Are set up as part of the KafkaListenerContainerFactory, see the bean definitions in KafkaErrorHandlingApplication
 
+### The error rate
+The IdCapturingWidgetEventHandler defined in KafkaErrorHandlingApplication uses a FlakyWidgetEventHandler that will 
+throw an exceptions sometimes. How often it fails can be configured in its constructor. 
